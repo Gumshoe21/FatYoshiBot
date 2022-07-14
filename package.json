@@ -1,0 +1,33 @@
+{
+  "name": "fatyoshibot",
+  "author": "Matthew Smilansky",
+  "license": "MIT",
+  "version": "1.0.0",
+  "description": "Twitch bot that assumes the (totally fabricated) likeness of Fat Yoshi.",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.1",
+    "tmi.js": "^1.8.5"
+  },
+  "engines": {
+    "node": ">= 14.0.0",
+    "npm": ">= 8.0.0"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gumshoe21/FatYoshiBot.git"
+  },
+  "keywords": [
+    "bot",
+    "twitch",
+    "irc"
+  ],
+  "bugs": {
+    "url": "https://github.com/Gumshoe21/FatYoshiBot/issues"
+  },
+  "homepage": "https://github.com/Gumshoe21/FatYoshiBot#readme"
+}
