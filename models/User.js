@@ -6,21 +6,18 @@ const user = new mongoose.Schema({
     required: true,
     unique: true
   },
-  points: {
-    type: Number,
-    required: true,
-    default: 0
-  },
-  weightContributed: {
-    type: Number,
-    required: true,
-    default: 0
-  },
-  triviaScore: {
-    type: Number,
-    required: true,
-    default: 0
-  },
+  values: [
+    {
+      id: String,
+      total: Number
+    }
+  ],
+  strings: [
+    {
+      id: Number,
+      text: String
+    }
+  ],
   access: {
     type: String,
     required: true,

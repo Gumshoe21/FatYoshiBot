@@ -9,7 +9,7 @@ const command = new mongoose.Schema({
   values: [
     {
       id: String,
-      num: Number
+      total: Number
     }
   ],
   strings: [
