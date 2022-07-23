@@ -58,11 +58,12 @@ app.use((req, res, next) => {
   next();
 });
 
-// app.use(`/api/${PROCESS.env.API_VERSION}/users`, userRouter);
+app.use(`/api/${process.env.API_VERSION}/users`, userRouter);
+app.use(`/api/${process.env.API_VERSION}/commands`, commandRouter);
 
-// app.get('/', (req, res) => {
-//   res.send('Hello from Express!');
-// });
+app.get('/', (req, res) => {
+  res.send('Hello from Express!');
+});
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find URL ${req.originalUrl} on this server`, 404));

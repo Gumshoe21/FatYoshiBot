@@ -23,7 +23,7 @@ const user = new mongoose.Schema({
     required: true,
     default: 'user'
   },
-  permissions: [
+  roles: [
     {
       type: String,
       enum: ['user', 'mod', 'vip', 'admin'],
@@ -33,4 +33,13 @@ const user = new mongoose.Schema({
   ]
 });
 
+userSchema.methods.isAdmin = () => this.access === 'admin';
+
+userSchema.methods.addValue = async function (id, num) {
+  this.values.push({ id, num });
+};
+
+userSchema.methods.addString = async function (id, text) {
+  this.strings.push({ id, text });
+};
 const User = mongoose.model('User', user);
