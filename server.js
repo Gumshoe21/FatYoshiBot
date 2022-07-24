@@ -1,8 +1,8 @@
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
-const tmiClient = require('./tmiClient');
-const { commandHandler } = require('./src/bot/listeners');
-// MongoDB
+const tmiClient = require('./bot/tmiClient');
+const { commandHandler } = require('./bot/listeners');
+const Value = require('./models/Value');
 
 mongoose
   .connect(process.env.MONGO_URI, {

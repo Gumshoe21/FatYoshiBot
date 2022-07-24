@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
 
 const value = new mongoose.Schema({
-  id: {
+  name: {
     type: String,
     required: true,
     unique: true
   },
   num: {
     type: Number,
-    required: true
+    required: true,
+    default: 0
   }
 });
 
-const Value = mongoose.model('Value', value);
+module.exports = mongoose.model('Value', value);

@@ -5,19 +5,7 @@ const command = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
-  },
-  values: [
-    {
-      id: String,
-      total: Number
-    }
-  ],
-  strings: [
-    {
-      id: Number,
-      text: String
-    }
-  ]
+  }
 });
 
 const Command = mongoose.model('Command', command);
