@@ -1,7 +1,7 @@
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 const tmiClient = require('./bot/tmiClient');
-const { commandHandler } = require('./bot/listeners');
+const { commandHandler, redemptionHandler } = require('./bot/handlers');
 const Value = require('./models/Value');
 
 mongoose
@@ -13,3 +13,4 @@ mongoose
 tmiClient.connect();
 
 tmiClient.on('message', commandHandler);
+tmiClient.on('redeem', redemptionHandler);

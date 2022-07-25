@@ -5,15 +5,23 @@ const Value = require('./../models/Value');
 
 const Quotes = require('./../models/Quotes');
 
+const generatePublicCommandsList = () => {
+  let publicCommandsList = [];
+  Object.keys(commands).forEach((command) => {
+    if (!command.access.includes('admin')) commands.push(`!${command}`);
+  });
+  return commands;
+};
+
 exports.commands = {
-  feed: {
+  bot: {
+    access: ['admin'],
+    onCommand: async () => {}
+  },
+  commands: {
+    access: ['user'],
     onCommand: async () => {
-      let weight = await Value.findOneAndUpdate(
-        { name: 'fatYoshiWeight' },
-        { $inc: { num: 1.0 } },
-        { new: true, upsert: true }
-      );
-      return `${weight.num} beegboyu!!!!!`;
+      return generatePublicCommandsList();
     }
   }
 };

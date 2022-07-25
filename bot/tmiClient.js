@@ -9,5 +9,5 @@ module.exports = new tmi.Client({
     password: process.env.TWITCH_BOT_OAUTH_TOKEN
   },
 
-  channels: ['fatyoshibot']
+  channels: ['gumshoe21']
 });
