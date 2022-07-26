@@ -6,12 +6,13 @@ const user = new mongoose.Schema({
     required: true,
     unique: true
   },
-  values: [
-    {
-      id: String,
-      total: Number
+  values: {
+    type: mongoose.Schema.Types.Mixed,
+    required: true,
+    default: {
+      fatYoshiWeightContributed: 0
     }
-  ],
+  },
   strings: [
     {
       id: Number,
@@ -43,3 +44,5 @@ user.methods.addString = async function (id, text) {
   this.strings.push({ id, text });
 };
 const User = mongoose.model('User', user);
+
+module.exports = User;

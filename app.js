@@ -9,10 +9,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const hpp = require('hpp');
 const cors = require('cors');
-
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
-
+const userRouter = require('./routes/userRoutes');
+const commandRouter = require('./routes/userRoutes');
 const app = express();
 
 // By enabling the "trust proxy" setting via app.enable('trust proxy'), Express will have knowledge that it's sitting behind a proxy and that the X-Forwarded-* header fields may be trusted, which otherwise may be easily spoofed.
@@ -37,7 +37,8 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(hpp());
 
 // rate limiting
@@ -59,7 +60,6 @@ app.use((req, res, next) => {
 });
 
 app.use(`/api/${process.env.API_VERSION}/users`, userRouter);
-app.use(`/api/${process.env.API_VERSION}/commands`, commandRouter);
 
 app.get('/', (req, res) => {
   res.send('Hello from Express!');

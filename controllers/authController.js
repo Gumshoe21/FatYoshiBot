@@ -1,6 +1,5 @@
 const crypto = require('crypto');
 const { promisify } = require('util'); // utility for promisify method
-const normalize = require('normalize-url');
 const dotenv = require('dotenv');
 const jwt = require('jsonwebtoken');
 const User = require('./../models/User');
