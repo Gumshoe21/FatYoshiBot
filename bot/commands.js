@@ -8,7 +8,7 @@ const Quotes = require('./../models/Quotes');
 const generatePublicCommandsList = () => {
   let publicCommandsList = [];
   Object.keys(commands).forEach((command) => {
-    if (!command.access.includes('admin')) commands.push(`!${command}`);
+    if (!command.access.includes('admin')) publicCommandsList.push(`!${command}`);
   });
   return commands;
 };
@@ -16,7 +16,7 @@ const generatePublicCommandsList = () => {
 exports.commands = {
   bot: {
     access: ['admin'],
-    onCommand: async () => {}
+    onCommand: async () => { }
   },
   commands: {
     access: ['user'],

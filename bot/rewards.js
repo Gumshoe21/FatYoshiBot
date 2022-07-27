@@ -1,19 +1,18 @@
 const Value = require('./../models/Value');
+const { updateUserWeightContributed } = require('./actions');
 const { REWARD_FEED_FAT_YOSHI, EMOTE_FAT_YOSHI } = require('./../constants');
 
 exports.rewards = {
   [`${REWARD_FEED_FAT_YOSHI}`]: {
     onCommand: async ({ userName }) => {
-      let weight = await Value.findOneAndUpdate(
-        { name: 'fatYoshiWeight' },
-        { $inc: { num: 1.0 } },
-        { new: true, upsert: true }
-      );
-      return `${EMOTE_FAT_YOSHI} Thank you for the meal, ${userName}! I now weigh ${
+      const user = await updateUserWeightContributed(userName);
+      return `${EMOTE_FAT_YOSHI} Thanks for feeding me, ${userName}! I now weigh ${
         weight.num
-      } pounds (that's ${
-        weight.num / 2.2
-      } kilograms)! I'm a beeg boi. ${EMOTE_FAT_YOSHI}`;
+      } lbs./${weight.num / 2.2} kgs)! You've contributed ${
+        user.values.fatYoshiWeightContributed
+      } lbs./${
+        user.values.fatYoshiWeightContributed / 2.2
+      } kgs! Thanks for keeping me fat! ${EMOTE_FAT_YOSHI}`;
     }
   }
 };
