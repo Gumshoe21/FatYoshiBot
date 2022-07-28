@@ -1,18 +1,16 @@
 const User = require('../models/User');
 
-exports.incrementUserValue = () => {
-  return (username, value, amount) => {
-    const user = User.findOneAndUpdate({ username },
-      {
-        $inc: { [`values.${value}`]: amount }
-      },
-      {
-        upsert: true,
-        new: true
-      }
-    )
-    return user;
-  }
+exports.incrementUserValue = (username, value, amount) => {
+  const user = User.findOneAndUpdate({ username },
+    {
+      $inc: { [`values.${value}`]: amount }
+    },
+    {
+      upsert: true,
+      new: true
+    }
+  )
+  return user;
 }
 
 /*
