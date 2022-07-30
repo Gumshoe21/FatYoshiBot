@@ -1,3 +1,7 @@
+// General 
+
+exports.STREAMER_NICKNAME = 'Gumshoe';
+
 // Emotes
 
 exports.EMOTE_FAT_YOSHI = 'FatYoshi';
