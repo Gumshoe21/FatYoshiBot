@@ -4,15 +4,16 @@ const cooldown = mongoose.Schema({
   username: {
     type: String,
     required: true,
-    unique: true
+    sparse: false
   },
   command: {
     type: String,
     required: true
   },
-  length: {
+  startTime: {
     type: Date,
-    required: String
+    required: true,
+    default: Date.now
   }
 });
 
