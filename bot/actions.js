@@ -35,11 +35,8 @@ exports.isOnCooldown = async (username, command) => {
 
     console.log(Math.floor(new Date(Date.now()).getTime() / 1000));
     if (
-      Math.floor(new Date(Date.now()).getTime() / 1000) !==
-        Math.floor(cooldown.startTime / 1000) &&
-      Math.floor(new Date(Date.now()).getTime() / 1000) -
-        Math.floor(cooldown.startTime / 1000) <
-        30
+      msToSec(currentTimeInMs()) !== msToSec(cooldown.startTime) &&
+      msToSec(currentTimeInMs()) - msToSec(cooldown.startTime) < 30
     ) {
       return true;
     } else {
@@ -60,6 +57,6 @@ const msToSec = (ms) => {
   return Math.floor(ms / 1000);
 };
 
-const currentTimeInMs = (currentTime) => {
+const currentTimeInMs = () => {
   return new Date(Date.now()).getTime();
 };
