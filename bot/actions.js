@@ -18,7 +18,7 @@ exports.incrementUserValue = (username, value, amount) => {
 exports.isOnCooldown = async (username, command) => {
   let cooldownActive = false;
   try {
-    let cooldown = Cooldown.findOne({
+    let cooldown = await Cooldown.findOne({
       username: username,
       command: command
     });
@@ -27,21 +27,39 @@ exports.isOnCooldown = async (username, command) => {
       cooldown = await Cooldown.create({
         username,
         command,
-        startTime: new Date(Date.now())
+        startTime: new Date(Date.now()).getTime()
       });
     }
+    console.log(Math.floor(cooldown.startTime / 1000));
+    const now = new Date(Date.now()).getTime();
 
+    console.log(Math.floor(new Date(Date.now()).getTime() / 1000));
     if (
-      Math.floor(+new Date(Date.now()) * 1000) -
-        Math.floor(+cooldown.startTime) * 1000 <
-      30
+      Math.floor(new Date(Date.now()).getTime() / 1000) !==
+        Math.floor(cooldown.startTime / 1000) &&
+      Math.floor(new Date(Date.now()).getTime() / 1000) -
+        Math.floor(cooldown.startTime / 1000) <
+        30
     ) {
       return true;
     } else {
-      Cooldown.deleteOne({ username: username, command: command });
+      await Cooldown.deleteOne({ username: username, command: command });
+      cooldown = await Cooldown.create({
+        username,
+        command,
+        startTime: new Date(Date.now()).getTime()
+      });
       return false;
     }
   } catch (err) {
     console.log(err);
   }
+};
+
+const msToSec = (ms) => {
+  return Math.floor(ms / 1000);
+};
+
+const currentTimeInMs = (currentTime) => {
+  return new Date(Date.now()).getTime();
 };

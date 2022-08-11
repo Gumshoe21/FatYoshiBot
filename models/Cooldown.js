@@ -11,9 +11,8 @@ const cooldown = mongoose.Schema({
     required: true
   },
   startTime: {
-    type: Date,
-    required: true,
-    default: Date.now
+    type: Number,
+    required: true
   }
 });
 
