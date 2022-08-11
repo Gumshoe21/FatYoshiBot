@@ -4,10 +4,8 @@ const Value = require('./../models/Value');
 const Quotes = require('./../models/Quotes');
 const { incrementUserValue } = require('./actions');
 const { STREAMER_NICKNAME } = require('./../constants');
-const {
-  generatePublicCommandsList,
-  generatePeterSentence
-} = require('./utils');
+const { generatePeterSentence } = require('./utils/generatePeterSentence');
+// const { generatePublicCommandsList } = require('./utils/generatePublicCommandsList');
 
 const commands = {
   r: {
@@ -29,7 +27,7 @@ const commands = {
   commands: {
     access: ['user'],
     onCommand: async () => {
-      return generatePublicCommandsList();
+      return commandsList;
     }
   },
   peter: {
@@ -41,3 +39,14 @@ const commands = {
 };
 
 exports.commands = commands;
+
+const generatePublicCommandsList = ({ commands }) => {
+  let publicCommandsList = [];
+  for (const command in commands) {
+    if (!commands[command].access.includes('admin'))
+      publicCommandsList.push(`!${command}`);
+  }
+  return publicCommandsList.join(' ');
+};
+
+const commandsList = generatePublicCommandsList({ commands });

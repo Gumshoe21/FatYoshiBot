@@ -1,4 +1,4 @@
-const generatePeterSentence = () => {
+exports.generatePeterSentence = () => {
   const wordGroups = [
     [
       "Don't",
@@ -11,7 +11,7 @@ const generatePeterSentence = () => {
       'in',
       'good',
       'hands'
-    ], // length 8, array.length - 1 = 7;
+    ],
     [
       'Oh',
       'no',
@@ -20,11 +20,22 @@ const generatePeterSentence = () => {
       'class',
       'I',
       'got',
-      'so caught up in',
-      'what I was doing',
-      'I forgot all about',
+      'so',
+      'caught',
+      'up',
+      'in',
+      'what',
+      'I',
+      'was',
+      'doing',
+      'I',
+      'forgot',
+      'all',
+      'about',
       'it',
-      "S'gonna kill me."
+      "S'gonna",
+      'kill',
+      'me'
     ]
   ];
 
@@ -37,16 +48,3 @@ const generatePeterSentence = () => {
   }
   return randomGroup.join(' ');
 };
-
-exports.generatePeterSentence = generatePeterSentence;
-
-const generatePublicCommandsList = ({ commands }) => {
-  let publicCommandsList = [];
-  Object.keys(commands).forEach((command) => {
-    if (!command.access.includes('admin'))
-      publicCommandsList.push(`!${command}`);
-  });
-  return publicCommandsList;
-};
-
-exports.generatePublicCommandsList = generatePublicCommandsList;

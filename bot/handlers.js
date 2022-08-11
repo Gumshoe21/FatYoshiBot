@@ -2,7 +2,7 @@ const tmiClient = require('./tmiClient');
 const { commands } = require('./commands');
 const { rewards } = require('./rewards');
 const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
-const { isOnCooldown } = require('./actions');
+const { isOnCooldown } = require('./utils/isOnCooldown');
 
 exports.commandHandler = async (channel, context, message, self) => {
   if (self) return;
