@@ -16,10 +16,7 @@ exports.isOnCooldown = async (username, command) => {
         startTime: new Date(Date.now()).getTime()
       });
     }
-    console.log(Math.floor(cooldown.startTime / 1000));
-    const now = new Date(Date.now()).getTime();
 
-    console.log(Math.floor(new Date(Date.now()).getTime() / 1000));
     if (
       convertMsToSec(getCurrentTimeInMs()) !==
         convertMsToSec(cooldown.startTime) &&
