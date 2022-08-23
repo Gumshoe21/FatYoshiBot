@@ -24,14 +24,7 @@ const user = new mongoose.Schema({
     required: true,
     default: 'user'
   },
-  roles: [
-    {
-      type: String,
-      enum: ['user', 'mod', 'vip', 'admin'],
-      required: true,
-      unique: true
-    }
-  ]
+  roles: [String]
 });
 
 user.methods.isAdmin = () => this.access === 'admin';
