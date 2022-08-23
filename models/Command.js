@@ -9,3 +9,5 @@ const command = new mongoose.Schema({
 });
 
 const Command = mongoose.model('Command', command);
+
+module.exports = Command;

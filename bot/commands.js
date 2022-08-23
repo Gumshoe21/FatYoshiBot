@@ -1,7 +1,7 @@
 const User = require('./../models/User');
 const Command = require('./../models/Command');
 const Value = require('./../models/Value');
-const Quotes = require('./../models/Quotes');
+const Quotes = require('../models/Quote');
 const { incrementUserValue } = require('./actions');
 const { STREAMER_NICKNAME } = require('./../constants');
 const { generatePeterSentence } = require('./utils/generatePeterSentence');

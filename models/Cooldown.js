@@ -17,4 +17,5 @@ const cooldown = mongoose.Schema({
 });
 
 const Cooldown = mongoose.model('Cooldown', cooldown);
+
 module.exports = Cooldown;

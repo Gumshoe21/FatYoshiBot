@@ -13,4 +13,6 @@ const value = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Value', value);
+const Value = mongoose.model('Value', value);
+
+module.exports = Value;

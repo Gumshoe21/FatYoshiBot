@@ -8,7 +8,7 @@ interface IUser {
   roles: string[];
 }
 
-const userSchema = new mongoose.Schema<IUser>({
+const user = new mongoose.Schema<IUser>({
   username: {
     type: String,
     required: true,
@@ -35,4 +35,6 @@ const userSchema = new mongoose.Schema<IUser>({
   roles: [String]
 });
 
-const User = mongoose.model<IUser>('User', userSchema);
+const User = mongoose.model<IUser>('User', user);
+
+module.exports = User;
