@@ -1,3 +1,4 @@
+"use strict";
 exports.getCurrentTimeInMs = () => {
-  return new Date(Date.now()).getTime();
+    return new Date(Date.now()).getTime();
 };

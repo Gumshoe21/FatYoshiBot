@@ -1,3 +1,4 @@
+"use strict";
 exports.convertMsToSec = (ms) => {
-  return Math.floor(ms / 1000);
+    return Math.floor(ms / 1000);
 };

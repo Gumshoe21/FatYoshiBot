@@ -13,3 +13,5 @@ const options: tmi.Options = {
 };
 
 const tmiClient: tmi.Client = new tmi.Client(options);
+
+module.exports = tmiClient;
