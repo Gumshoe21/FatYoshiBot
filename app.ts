@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const hpp = require('hpp');
 const cors = require('cors');
-const AppError = require('./utils/appError');
+import { AppError } from './utils/appError';
 const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
 const commandRouter = require('./routes/userRoutes');

@@ -6,7 +6,8 @@
   "description": "Twitch bot that assumes the (totally fabricated) likeness of Fat Yoshi.",
   "private": true,
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "webpack-dev-server --progress ",
+    "build": "webpack --config webpack.config.prod.js"
   },
   "dependencies": {
     "@types/tmi.js": "^1.8.1",
@@ -27,7 +28,6 @@
     "normalize-url": "^7.0.3",
     "path": "^0.12.7",
     "tmi.js": "^1.8.5",
-    "typescript": "^4.7.4",
     "xss-clean": "^0.1.1"
   },
   "engines": {
@@ -49,6 +49,13 @@
   },
   "homepage": "https://github.com/Gumshoe21/FatYoshiBot#readme",
   "devDependencies": {
-    "@types/express": "^4.17.13"
+    "@types/express": "^4.17.13",
+    "clean-webpack-plugin": "^4.0.0",
+    "ts-loader": "^9.3.1",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0",
+    "webpack-dev-server": "^4.10.0",
+    "webpack-node-externals": "^3.0.0"
   }
 }
