@@ -10,7 +10,6 @@ const bodyParser = require('body-parser');
 const hpp = require('hpp');
 const cors = require('cors');
 import AppError from './utils/appError';
-const globalErrorHandler = require('./controllers/errorController');
 const userRouter = require('./routes/userRoutes');
 const commandRouter = require('./routes/userRoutes');
 const app = express();
@@ -71,7 +70,5 @@ app.all(
     next(new AppError(`Can't find URL ${req.originalUrl} on this server`, 404));
   }
 );
-
-app.use(globalErrorHandler);
 
 module.exports = app;

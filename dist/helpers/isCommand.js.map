@@ -1,1 +1,0 @@
-{"version":3,"file":"isCommand.js","sourceRoot":"","sources":["../../src/helpers/isCommand.ts"],"names":[],"mappings":";AAAA,OAAO,CAAC,SAAS,GAAG,CAAC,OAAe,EAAW,EAAE;IAC/C,MAAM,aAAa,GAAG,IAAI,MAAM,CAAC,+BAA+B,CAAC,CAAC;IAClE,OAAO,aAAa,CAAC,IAAI,CAAC,OAAO,CAAC,CAAC;AACrC,CAAC,CAAC"}

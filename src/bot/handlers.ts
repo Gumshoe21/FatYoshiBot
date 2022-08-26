@@ -4,7 +4,6 @@ const { rewards } = require('./rewards');
 const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 const { isOnCooldown } = require('./utils/isOnCooldown');
 const { isCommand } = require('./../helpers/isCommand');
-
 exports.commandHandler = async (channel, context, message, self) => {
   // If our message isn't formatted like a command (i.e., preceded by a '!'), exit fn.
   if (!isCommand(message)) return;
