@@ -4,7 +4,7 @@ const nodeExternals = require('webpack-node-externals');
 
 module.exports = {
   mode: 'production', // this will tell Webpack to do these optimizations, minify our code and so on.
-  entry: './server.js',
+  entry: './src/server.ts',
   target: 'node',
   externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
   externalsPresets: {
@@ -14,7 +14,7 @@ module.exports = {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
   },
-  devtool: 'none',
+  devtool: false,
   module: {
     rules: [
       {

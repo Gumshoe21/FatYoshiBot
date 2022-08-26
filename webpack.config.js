@@ -4,7 +4,7 @@ const nodeExternals = require('webpack-node-externals');
 module.exports = {
   mode: 'development', // This will, in the end tell Webpack that here we're building for development and that it will do fewer optimizations to improve our development experience, make debugging even easier, and give us more meaningful error messages, for example.
   stats: 'verbose',
-  entry: './server.ts',
+  entry: './src/server.ts',
   target: 'node',
   externals: [nodeExternals()], // in order to ignore all modules in node_modules folder
   externalsPresets: {
