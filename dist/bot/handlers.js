@@ -43,17 +43,15 @@ exports.commandHandler = (channel, context, message, self) => __awaiter(void 0, 
     if (!cooldownIsActive)
         tmiClient_1.default.say(channel, response);
 });
-exports.redemptionHandler = (channel, username, type, tags, message) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(type);
+exports.rewardHandler = (channel, username, type, tags, message) => __awaiter(void 0, void 0, void 0, function* () {
     // If a reward with that reward id isn't present in the list of rewards, exit fn.
     if (!rewards[type])
         return;
     // If the redeemer is the bot itself, exit fn.
-    // Obtain the onRedemption fn from the reward to which it belongs.
+    // Obtain the onReward fn from the reward to which it belongs.
     const { onReward } = rewards[type] || {};
-    // Execute the onRedemption fn, await its response, and store it in a var.
+    // Execute the onReward fn, await its response, and store it in a var.
     let response = yield onReward({ channel, username, type, tags, message });
-    console.log(response);
     // Convey the response to the channel in a message.
     tmiClient_1.default.say(channel, response);
 });
