@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 interface IUser {
   username: string;
-  values: mongoose.Schema.Types.Mixed;
+  fatYoshiWeightContributed: number;
   strings: { id: number; text: string }[];
   access: string;
   roles: string[];
@@ -14,12 +14,10 @@ const user = new mongoose.Schema<IUser>({
     required: true,
     unique: true
   },
-  values: {
-    type: mongoose.Schema.Types.Mixed,
+  fatYoshiWeightContributed: {
+    type: Number,
     required: true,
-    default: {
-      fatYoshiWeightContributed: 0
-    }
+    default: 0
   },
   strings: [
     {

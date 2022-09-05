@@ -1,27 +1,43 @@
 import { ValueDeterminingMiddleware } from 'express-rate-limit';
 import mongoose from 'mongoose';
-const { Value } = require('./../models/Value');
-const { incrementUserValue } = require('./actions');
+
+import Value from './../models/Value';
+import User from './../models/User';
+// const { incrementUserValue } = require('./actions');
 const { REWARD_FEED_FAT_YOSHI, EMOTE_FAT_YOSHI } = require('./../constants');
 
 exports.rewards = {
   [`${REWARD_FEED_FAT_YOSHI}`]: {
     onReward: async ({ username }) => {
-      const user = await incrementUserValue(
-        username,
-        'fatYoshiWeightContributed',
-        1
+      const user = await User.findOneAndUpdate(
+        { username },
+        {
+          $inc: { [`fatYoshiWeightContributed`]: Math.floor(1) }
+        },
+        {
+          upsert: true,
+          new: true
+        }
       );
-      const fatYoshiWeight = await Value.find({
-        name: 'fatYoshiWeight'
-      });
+
+      const fatYoshiWeight = await Value.findOneAndUpdate(
+        { name: 'fatYoshiWeight' },
+        {
+          $inc: { [`num`]: Math.floor(1) }
+        },
+        {
+          upsert: true,
+          new: true
+        }
+      );
+
       const { num: weight } = fatYoshiWeight;
-      const { fatYoshiWeightContributed: contributed } = user.values;
-      return `${EMOTE_FAT_YOSHI} Thanks for feeding me, ${username}! I now weigh ${weight} lbs./${
+      const { fatYoshiWeightContributed: contributed } = user;
+      return `${EMOTE_FAT_YOSHI} Thanks for feeding me, ${username}! I now weigh ${weight} lbs./${(
         weight / 2.2
-      } kgs)! You've contributed ${contributed} lbs./${
+      ).toFixed(2)} kgs)! You've contributed ${contributed} lbs./${(
         contributed / 2.2
-      } kgs! Thanks for keeping me fat! ${EMOTE_FAT_YOSHI}`;
+      ).toFixed(2)} kgs! Thanks for keeping me fat! ${EMOTE_FAT_YOSHI}`;
     }
   }
 };

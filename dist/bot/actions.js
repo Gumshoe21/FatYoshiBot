@@ -1,4 +1,5 @@
-import User from '../models/User';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 /*
 exports.incrementUserValue = (
   username: string,
@@ -18,3 +19,4 @@ exports.incrementUserValue = (
   return user;
 };
 */
+//# sourceMappingURL=actions.js.map
