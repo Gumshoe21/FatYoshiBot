@@ -15,6 +15,7 @@ const Quotes = require('../models/Quote');
 const { incrementUserValue } = require('./actions');
 const { STREAMER_NICKNAME } = require('./../constants');
 const { generatePeterSentence } = require('./utils/generatePeterSentence');
+const { generateGaslightSentence } = require('./utils/generateGaslightSentence');
 // const { generatePublicCommandsList } = require('./utils/generatePublicCommandsList');
 exports.commands = {
     r: {
@@ -43,6 +44,12 @@ exports.commands = {
         access: ['user'],
         onCommand: () => __awaiter(void 0, void 0, void 0, function* () {
             return generatePeterSentence();
+        })
+    },
+    gaslight: {
+        access: ['user'],
+        onCommand: () => __awaiter(void 0, void 0, void 0, function* () {
+            return generateGaslightSentence();
         })
     }
 };
