@@ -31,8 +31,10 @@ exports.commands = {
         })
     },
     bot: {
-        access: ['admin'],
-        onCommand: () => __awaiter(void 0, void 0, void 0, function* () { })
+        access: ['user'],
+        onCommand: () => __awaiter(void 0, void 0, void 0, function* () {
+            return "Hi there! I'm FatYoshiBot. Gumshoe programmed me to entertain you during the stream. If you have any ideas about new features I should have, let Gumshoe know! It would be a beeg help.";
+        })
     },
     commands: {
         access: ['user'],
