@@ -8,10 +8,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-exports.setAsyncInterval = (cb, timeout = 0) => __awaiter(void 0, void 0, void 0, function* () {
+// An async fn. that returns a call of setInterval, which executes the provided callback fn. You provide the interval duration. This way we can await a setInterval call in our timerHandler fn. in bot/handlers.ts.
+exports.setAsyncInterval = (cb, interval = 0) => __awaiter(void 0, void 0, void 0, function* () {
     setInterval(() => {
         cb();
-    }, timeout);
+    }, interval);
 });
-//
 //# sourceMappingURL=setAsyncInterval.js.map
