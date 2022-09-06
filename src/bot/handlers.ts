@@ -54,3 +54,14 @@ exports.timerHandler = async () => {
     tmiClient.say(`${process.env.TWITCH_USER_CHANNEL_NAME}`, '---test---');
   }, 1000);
 };
+
+exports.raidHandler = async (
+  raidedChannel,
+  raiderUsername,
+  raidViewerCount
+) => {
+  tmiClient.say(
+    raidedChannel,
+    `${raiderUsername} is raiding your channel with ${raidViewerCount} delicious viewers! Dinner is served!`
+  );
+};

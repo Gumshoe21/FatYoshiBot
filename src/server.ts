@@ -4,7 +4,8 @@ import tmiClient from './bot/tmiClient';
 const {
   commandHandler,
   rewardHandler,
-  timerHandler
+  timerHandler,
+  raidHandler
 } = require('./bot/handlers');
 const Value = require('./models/Value');
 const app = require('./app');
@@ -19,7 +20,12 @@ tmiClient.connect();
 
 tmiClient.on('message', commandHandler);
 tmiClient.on('redeem', rewardHandler);
+<<<<<<< HEAD
 // tmiClient.on('connected', timerHandler);
+=======
+tmiClient.on('connected', timerHandler);
+tmiClient.on('raided', raidHandler);
+>>>>>>> e464911 (Added raid event handler.)
 
 process.on('uncaughtException', (err) => {
   console.log(err);
