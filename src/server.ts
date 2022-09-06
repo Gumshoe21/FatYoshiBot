@@ -4,7 +4,8 @@ import tmiClient from './bot/tmiClient';
 const {
   commandHandler,
   rewardHandler,
-  timerHandler
+  timerHandler,
+  raidHandler
 } = require('./bot/handlers');
 const Value = require('./models/Value');
 const app = require('./app');
@@ -20,6 +21,7 @@ tmiClient.connect();
 tmiClient.on('message', commandHandler);
 tmiClient.on('redeem', rewardHandler);
 tmiClient.on('connected', timerHandler);
+tmiClient.on('raided', raidHandler);
 
 process.on('uncaughtException', (err) => {
   console.log(err);

@@ -61,4 +61,7 @@ exports.timerHandler = () => __awaiter(void 0, void 0, void 0, function* () {
         tmiClient_1.default.say(`${process.env.TWITCH_USER_CHANNEL_NAME}`, '---test---');
     }, 1000);
 });
+exports.raidHandler = (raidedChannel, raiderUsername, raidViewerCount) => __awaiter(void 0, void 0, void 0, function* () {
+    tmiClient_1.default.say(raidedChannel, `${raiderUsername} is raiding your channel with ${raidViewerCount} delicious viewers! Dinner is served!`);
+});
 //# sourceMappingURL=handlers.js.map
