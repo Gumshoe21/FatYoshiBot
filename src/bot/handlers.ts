@@ -4,6 +4,7 @@ const { rewards } = require('./rewards');
 const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 const { isOnCooldown } = require('./utils/isOnCooldown');
 const { isCommand } = require('./../helpers/isCommand');
+const { setAsyncInterval } = require('./../helpers/asyncTimeout');
 exports.commandHandler = async (channel, context, message, self) => {
   // console.log(context);
   // If our message isn't formatted like a command (i.e., preceded by a '!'), exit fn.
@@ -46,4 +47,10 @@ exports.rewardHandler = async (channel, username, type, tags, message) => {
   let response = await onReward({ channel, username, type, tags, message });
   // Convey the response to the channel in a message.
   tmiClient.say(channel, response);
+};
+
+exports.timerHandler = async () => {
+  const fatYoshiQuoteTimer = await setAsyncInterval(() => {
+    tmiClient.say(`${process.env.TWITCH_USER_CHANNEL_NAME}`, '---test---');
+  }, 1000);
 };

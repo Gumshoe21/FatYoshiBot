@@ -1,7 +1,11 @@
 const dotenv = require('dotenv').config();
 const mongoose = require('mongoose');
 import tmiClient from './bot/tmiClient';
-const { commandHandler, rewardHandler } = require('./bot/handlers');
+const {
+  commandHandler,
+  rewardHandler,
+  timerHandler
+} = require('./bot/handlers');
 const Value = require('./models/Value');
 const app = require('./app');
 
@@ -15,6 +19,8 @@ tmiClient.connect();
 
 tmiClient.on('message', commandHandler);
 tmiClient.on('redeem', rewardHandler);
+tmiClient.on('connected', timerHandler);
+
 process.on('uncaughtException', (err) => {
   console.log(err);
   process.exit(1); // code 0 = success; code 1 = uncaught exception
