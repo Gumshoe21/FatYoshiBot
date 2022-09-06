@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 interface IQuote {
   id: number;
+  category: string;
   text: string;
 }
 const quote = new mongoose.Schema<IQuote>({
@@ -9,6 +10,12 @@ const quote = new mongoose.Schema<IQuote>({
     type: Number,
     required: true,
     unique: true
+  },
+  category: {
+    type: String,
+    required: true,
+    unique: false,
+    default: 'quote'
   },
   text: {
     type: String,
