@@ -4,16 +4,17 @@ const { getCurrentTimeInMs } = require('./../../helpers/getCurrentTimeInMs');
 const { GLOBAL_COOLDOWN_TIME_IN_SECONDS } = require('./../../constants');
 
 exports.isOnCooldown = async (username: string, command: string) => {
+  console.log(username);
   // Try to find a cooldown with the provided username and command name in the database. If such a cooldown isn't found, create a new cooldown with the provided username and command name and set the startTime field to the current time in milliseconds.
   try {
     let cooldown = await Cooldown.findOne({
-      username: username,
+      username: username.toLowerCase(),
       command: command
     });
 
     if (!cooldown) {
       cooldown = await Cooldown.create({
-        username,
+        username: username.toLowerCase(),
         command,
         startTime: new Date(Date.now()).getTime()
       });
