@@ -20,12 +20,8 @@ tmiClient.connect();
 
 tmiClient.on('message', commandHandler);
 tmiClient.on('redeem', rewardHandler);
-<<<<<<< HEAD
-// tmiClient.on('connected', timerHandler);
-=======
 tmiClient.on('connected', timerHandler);
 tmiClient.on('raided', raidHandler);
->>>>>>> e464911 (Added raid event handler.)
 
 process.on('uncaughtException', (err) => {
   console.log(err);
