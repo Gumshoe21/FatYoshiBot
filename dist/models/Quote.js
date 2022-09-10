@@ -10,6 +10,12 @@ const quote = new mongoose_1.default.Schema({
         required: true,
         unique: true
     },
+    category: {
+        type: String,
+        required: true,
+        unique: false,
+        default: 'quote'
+    },
     text: {
         type: String,
         required: true,

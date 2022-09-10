@@ -17,8 +17,12 @@ mongoose
 tmiClient_1.default.connect();
 tmiClient_1.default.on('message', commandHandler);
 tmiClient_1.default.on('redeem', rewardHandler);
+<<<<<<< HEAD
 // tmiClient.on('connected', timerHandler);
+=======
+tmiClient_1.default.on('connected', timerHandler);
 tmiClient_1.default.on('raided', raidHandler);
+>>>>>>> e464911 (Added raid event handler.)
 process.on('uncaughtException', (err) => {
     console.log(err);
     process.exit(1); // code 0 = success; code 1 = uncaught exception
