@@ -17,7 +17,7 @@ mongoose
 tmiClient_1.default.connect();
 tmiClient_1.default.on('message', commandHandler);
 tmiClient_1.default.on('redeem', rewardHandler);
-tmiClient_1.default.on('connected', timerHandler);
+// tmiClient.on('connected', timerHandler);
 tmiClient_1.default.on('raided', raidHandler);
 process.on('uncaughtException', (err) => {
     console.log(err);

@@ -12,7 +12,8 @@ const user = new mongoose.Schema<IUser>({
   username: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    lowercase: true
   },
   fatYoshiWeightContributed: {
     type: Number,

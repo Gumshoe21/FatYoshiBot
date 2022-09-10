@@ -8,7 +8,8 @@ const user = new mongoose_1.default.Schema({
     username: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
+        lowercase: true
     },
     fatYoshiWeightContributed: {
         type: Number,

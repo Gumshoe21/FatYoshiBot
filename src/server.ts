@@ -20,7 +20,7 @@ tmiClient.connect();
 
 tmiClient.on('message', commandHandler);
 tmiClient.on('redeem', rewardHandler);
-tmiClient.on('connected', timerHandler);
+// tmiClient.on('connected', timerHandler);
 tmiClient.on('raided', raidHandler);
 
 process.on('uncaughtException', (err) => {

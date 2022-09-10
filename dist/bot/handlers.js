@@ -18,7 +18,7 @@ const { rewards } = require('./rewards');
 const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 const { isOnCooldown } = require('./utils/isOnCooldown');
 const { isCommand } = require('./../helpers/isCommand');
-const { setAsyncInterval } = require('./../helpers/asyncTimeout');
+const { setAsyncInterval } = require('./../helpers/setAsyncInterval');
 exports.commandHandler = (channel, context, message, self) => __awaiter(void 0, void 0, void 0, function* () {
     // console.log(context);
     // If our message isn't formatted like a command (i.e., preceded by a '!'), exit fn.
@@ -57,9 +57,10 @@ exports.rewardHandler = (channel, username, type, tags, message) => __awaiter(vo
     tmiClient_1.default.say(channel, response);
 });
 exports.timerHandler = () => __awaiter(void 0, void 0, void 0, function* () {
-    const fatYoshiQuoteTimer = yield setAsyncInterval(() => {
-        tmiClient_1.default.say(`${process.env.TWITCH_USER_CHANNEL_NAME}`, '---test---');
-    }, 1000);
+    // const fatYoshiQuoteTimer = await setAsyncInterval(() => {
+    //   tmiClient.say(`${process.env.TWITCH_USER_CHANNEL_NAME}`, '---test---');
+    // }, 1000);
+    yield console.log('connected!');
 });
 exports.raidHandler = (raidedChannel, raiderUsername, raidViewerCount) => __awaiter(void 0, void 0, void 0, function* () {
     tmiClient_1.default.say(raidedChannel, `${raiderUsername} is raiding your channel with ${raidViewerCount} delicious viewers! Dinner is served!`);
