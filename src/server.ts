@@ -16,7 +16,10 @@ mongoose
   })
   .then((_con) => console.log('Database connection successful.'));
 
-tmiClient.connect();
+(async () => {
+  await tmiClient.connect();
+  await tmiClient.color('Green');
+})();
 
 tmiClient.on('message', commandHandler);
 tmiClient.on('redeem', rewardHandler);

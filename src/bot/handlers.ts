@@ -5,6 +5,7 @@ const regexpCommand = new RegExp(/^!([a-zA-Z0-9]+)(?:\W+)?(.*)?/);
 const { isOnCooldown } = require('./utils/isOnCooldown');
 const { isCommand } = require('./../helpers/isCommand');
 const { setAsyncInterval } = require('./../helpers/setAsyncInterval');
+const { FAT_YOSHI_TIMER_INTERVAL } = require('./../constants');
 exports.commandHandler = async (channel, context, message, self) => {
   // console.log(context);
   // If our message isn't formatted like a command (i.e., preceded by a '!'), exit fn.
@@ -50,9 +51,9 @@ exports.rewardHandler = async (channel, username, type, tags, message) => {
 };
 
 exports.timerHandler = async () => {
-  // const fatYoshiQuoteTimer = await setAsyncInterval(() => {
-  //   tmiClient.say(`${process.env.TWITCH_USER_CHANNEL_NAME}`, '---test---');
-  // }, 1000);
+  //const fatYoshiQuoteTimer = await setAsyncInterval(() => {
+  // tmiClient.say(`${process.env.TWITCH_USER_CHANNEL_NAME}`, '---test---');
+  //}, FAT_YOSHI_TIMER_INTERVAL);
   await console.log('connected!');
 };
 
