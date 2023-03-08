@@ -6,7 +6,7 @@
   "description": "Twitch bot that assumes the (totally fabricated) likeness of Fat Yoshi.",
   "private": true,
   "scripts": {
-    "start": "nodemon dist/server.js",
+    "start": "node dist/server.js",
     "build:dev": "webpack --config webpack.config.js --watch",
     "build:prod": "webpack --config webpack.config.prod.js --watch",
     "serve": "webpack serve"
@@ -61,5 +61,6 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.10.0",
     "webpack-node-externals": "^3.0.0"
-  }
+  },
+  "type": "module"
 }

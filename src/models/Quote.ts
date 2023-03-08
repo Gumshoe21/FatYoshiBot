@@ -26,4 +26,4 @@ const quote = new mongoose.Schema<IQuote>({
 
 const Quote = mongoose.model<IQuote>('Quote', quote);
 
-module.exports = Quote;
+export default Quote;

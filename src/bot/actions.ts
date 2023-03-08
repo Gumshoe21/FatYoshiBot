@@ -1,6 +1,6 @@
-import User from '../models/User';
+import User from '../models/User'
 /*
-exports.incrementUserValue = (
+export const incrementUserValue = (
   username: string,
   value: number,
   amount: number

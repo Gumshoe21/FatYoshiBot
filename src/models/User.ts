@@ -1,11 +1,13 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
 interface IUser {
-  username: string;
-  fatYoshiWeightContributed: number;
-  strings: { id: number; text: string }[];
-  access: string;
-  roles: string[];
+  username: string
+  fatYoshiWeightContributed: number
+  strings: { id: number; text: string }[]
+  access: string
+  roles: string[]
+  correctPassword?: string
+  password?: string
 }
 
 const user = new mongoose.Schema<IUser>({
@@ -13,26 +15,26 @@ const user = new mongoose.Schema<IUser>({
     type: String,
     required: true,
     unique: true,
-    lowercase: true
+    lowercase: true,
   },
   fatYoshiWeightContributed: {
     type: Number,
     required: true,
-    default: 0
+    default: 0,
   },
   strings: [
     {
       id: Number,
-      text: String
-    }
+      text: String,
+    },
   ],
   access: {
     type: String,
     required: true,
-    default: 'user'
+    default: 'user',
   },
-  roles: [String]
-});
+  roles: [String],
+})
 
-const User = mongoose.model<IUser>('User', user);
-export default User;
+const User = mongoose.model<IUser>('User', user)
+export default User

@@ -14,4 +14,4 @@ const command = new mongoose.Schema<ICommand>({
 
 const Command = mongoose.model<ICommand>('Command', command);
 
-module.exports = Command;
+export default Command;

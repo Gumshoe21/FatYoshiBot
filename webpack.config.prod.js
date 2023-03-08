@@ -1,8 +1,9 @@
-const path = require('path');
-const CleanPlugin = require('clean-webpack-plugin');
-const nodeExternals = require('webpack-node-externals');
+import path from 'path'
+import nodeExternals from 'webpack-node-externals'
 
-module.exports = {
+import CleanPlugin from 'clean-webpack-plugin'
+
+export default {
   mode: 'production', // this will tell Webpack to do these optimizations, minify our code and so on.
   entry: './src/server.ts',
   target: 'node',
@@ -12,7 +13,7 @@ module.exports = {
   },
   output: {
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, '/dist')
   },
   devtool: false,
   module: {
