@@ -1,14 +1,14 @@
 import { ValueDeterminingMiddleware } from 'express-rate-limit'
 import mongoose from 'mongoose'
 
-import Value from './../models/Value'
-import User from './../models/User'
+import Value from './../models/Value.js'
+import User from './../models/User.js'
 // import { incrementUserValue } from './actions'
-import { REWARD_FEED_FAT_YOSHI, EMOTE_FAT_YOSHI } from './../constants'
+import { REWARD_FEED_FAT_YOSHI, EMOTE_FAT_YOSHI } from './../constants.js'
 
 export const rewards = {
   [`${REWARD_FEED_FAT_YOSHI}`]: {
-    onReward: async ({ username, channel, type, tags}) => {
+    onReward: async ({ username, channel, type, tags }) => {
       const user = await User.findOneAndUpdate(
         { username },
         {

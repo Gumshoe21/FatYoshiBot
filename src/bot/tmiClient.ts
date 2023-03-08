@@ -1,5 +1,7 @@
 import tmi from 'tmi.js'
-
+import dotenv from 'dotenv'
+dotenv.config()
+console.log(process.env.TWITCH_BOT_OAUTH_TOKEN)
 const options: tmi.Options = {
   connection: {
     reconnect: true,
@@ -8,7 +10,6 @@ const options: tmi.Options = {
     username: process.env.TWITCH_BOT_USERNAME,
     password: process.env.TWITCH_BOT_OAUTH_TOKEN,
   },
-
   channels: ['gumshoe21'],
   options: {
     debug: true,

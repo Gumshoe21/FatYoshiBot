@@ -1,10 +1,10 @@
-import tmiClient from './tmiClient'
-import { commands } from './commands'
-import { rewards } from './rewards'
-import { isOnCooldown } from './utils/isOnCooldown'
-import { isCommand } from './../helpers/isCommand'
-import { setAsyncInterval } from './../helpers/setAsyncInterval'
-import { FAT_YOSHI_TIMER_INTERVAL } from './../constants'
+import tmiClient from './tmiClient.js'
+import { commands } from './commands.js'
+import { rewards } from './rewards.js'
+import { isOnCooldown } from './utils/isOnCooldown.js'
+import { isCommand } from './../helpers/isCommand.js'
+import { setAsyncInterval } from './../helpers/setAsyncInterval.js'
+import { FAT_YOSHI_TIMER_INTERVAL } from './../constants.js'
 import { ChatUserstate } from 'tmi.js'
 
 export async function commandHandler(channel, context, message, self) {

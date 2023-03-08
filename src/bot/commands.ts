@@ -1,7 +1,7 @@
 //import { incrementUserValue } from './actions'
-import { STREAMER_NICKNAME } from './../constants'
-import generatePeterSentence from './utils/generatePeterSentence'
-import generateGaslightSentence from './utils/generateGaslightSentence'
+import { STREAMER_NICKNAME } from './../constants.js'
+import generatePeterSentence from './utils/generatePeterSentence.js'
+import generateGaslightSentence from './utils/generateGaslightSentence.js'
 // import { generatePublicCommandsList } from './utils/generatePublicCommandsList'
 
 export const commands = {

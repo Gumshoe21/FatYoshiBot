@@ -1,7 +1,7 @@
-import Cooldown from '../../models/Cooldown'
-import convertMsToSec from './../../helpers/convertMsToSec'
-import getCurrentTimeInMs from './../../helpers/getCurrentTimeInMs'
-import { GLOBAL_COOLDOWN_TIME_IN_SECONDS } from './../../constants'
+import Cooldown from '../../models/Cooldown.js'
+import convertMsToSec from './../../helpers/convertMsToSec.js'
+import getCurrentTimeInMs from './../../helpers/getCurrentTimeInMs.js'
+import { GLOBAL_COOLDOWN_TIME_IN_SECONDS } from './../../constants.js'
 
 export const isOnCooldown = async (username: string, command: string) => {
 	console.log(username)
