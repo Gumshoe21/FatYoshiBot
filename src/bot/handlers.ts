@@ -22,7 +22,7 @@ export async function commandHandler(channel, context, message, self) {
 
   if (!commands[command]) return
 
-  let response = await onCommand({ channel, context, message, self })
+  let response = await onCommand( channel, context, message, self )
 
   // Execute the isOnCooldown fn and await its response, which will be either true if there is an active cooldown or false if there isn't one.
   const cooldownIsActive = await isOnCooldown(context.username, command)
