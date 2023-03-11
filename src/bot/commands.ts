@@ -8,6 +8,7 @@ import fetch from 'node-fetch'
 import dotenv from 'dotenv'
 import tmiClient from './tmiClient.js'
 import commandRegexp from './../helpers/commandRegexp.js'
+import { getUserId, getFollowAge } from './../utils/twitchApi.js'
 
 dotenv.config()
 
@@ -15,7 +16,12 @@ import { ChatUserstate } from 'tmi.js'
 interface ICommands {
   [key: string]: {
     access: string[]
-    onCommand: (channel?: string, context?: ChatUserstate, message?: string, self?: boolean) => Promise<string | { say: string; timeout: boolean }>
+    onCommand: (
+      channel?: string,
+      context?: ChatUserstate,
+      message?: string,
+      self?: boolean
+    ) => Promise<string | { say: string; timeout: boolean; reason: string; duration: number }>
   }
 }
 
@@ -89,7 +95,7 @@ export const commands: ICommands = {
     access: ['user'],
     onCommand: async (channel, context, message, self) => {
       // Declare userId as undefined at function's top level to allow access for nested functions.
-      let userId = undefined
+      let followerId = undefined
       const channelId = context!['room-id']
 
       const match = message!.match(commandRegexp)
@@ -98,38 +104,13 @@ export const commands: ICommands = {
       const [raw, command, argument] = match!
 
       if (argument) {
-        const res1 = await fetch(`https://api.twitch.tv/helix/users?login=${argument}`, {
-          headers: {
-            'Client-ID': process.env.TWITCH_APP_CLIENT_ID,
-            Authorization: `Bearer ${process.env.TWITCH_BOT_OAUTH_TOKEN!.split(':')[1]}`,
-          },
-        })
+        let { userId: fetchedId } = await getUserId(argument)
 
-        let data1 = await res1.json()
-
-        console.log(data1)
-        userId = data1.data[0].id ? data1.data[0].id : context!['user-id']
+        followerId = fetchedId || context!['user-id']
       }
 
-      const res = await fetch(`https://api.twitch.tv/helix/users/follows?to_id=${channelId}&from_id=${userId || context!['user-id']}`, {
-        headers: {
-          'Client-ID': process.env.TWITCH_APP_CLIENT_ID,
-          Authorization: `Bearer ${process.env.TWITCH_BOT_OAUTH_TOKEN!.split(':')[1]}`,
-        },
-      })
-
-      let data = await res.json()
-
-      let { data: dataObj } = data
-
-      if (data.data[0]) {
-        const followDate = new Date(data.data[0].followed_at)
-        const currentDate = new Date()
-        const followAge = Math.floor((currentDate.getTime() - followDate.getTime()) / (1000 * 60 * 60 * 24))
-        return `@${data.data[0].from_name || data.data[0].display_name}'s follow age is ${followAge} days`
-      } else {
-        return "Sorry, I don't have any data on this, I ate it all"
-      }
+      let say = await getFollowAge(channelId, followerId, context!['user-id'])
+      return say
     },
   },
   roulette: {
@@ -137,7 +118,7 @@ export const commands: ICommands = {
     onCommand: async (channel, context, message, self) => {
       console.log(channel)
       console.log(context)
-      let val = 1 // Math.random()
+      let val = Math.random()
       let username = context!['display-name']
       if (val === 0) {
         return `${username} survived! For now...`
@@ -145,8 +126,22 @@ export const commands: ICommands = {
         return {
           say: `My rapid-fire egg killed ${username}. Begone heathen!`,
           timeout: true,
+          reason: "You're dead, get rekt.",
+          duration: 60,
         }
       }
+    },
+  },
+  nerd: {
+    access: ['user'],
+    onCommand: async (channel, context, message, self) => {
+      const match = message!.match(commandRegexp)
+      const [raw, command, argument] = match!
+      if (!argument) {
+        return 'Nerdge UHM ACKSHYUALLY YOU NEED TO PROVIDE AN ARGUMENT TO THE COMMAND SO THAT THE COMMAND CAN EXECUTE PROPERLY. *pushes up bridge of glasses* UHM Nerdge'
+      }
+      console.log(raw, command, argument)
+      return `Nerdge UHM ACKSHYUALLY ${argument.toUpperCase()} *pushes up bridge of glasses* UHM Nerdge`
     },
   },
 }

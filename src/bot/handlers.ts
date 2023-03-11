@@ -9,8 +9,10 @@ import { Client, ChatUserstate } from 'tmi.js'
 import commandRegexp from './../helpers/commandRegexp.js'
 import dotenv from 'dotenv'
 import fetch, { Headers } from 'node-fetch'
+import { getUserId, timeoutUser } from './../utils/twitchApi.js'
 
 dotenv.config()
+
 export async function commandHandler(this: Client, channel, context, message, self) {
   try {
     if (!isCommand(message)) return
@@ -34,54 +36,20 @@ export async function commandHandler(this: Client, channel, context, message, se
     if (typeof response !== 'string') {
       if (response['timeout'] === true) {
         await this.say(channel, response!['say'])
-        //        await tmiClient.timeout(channel, context.username, 60)
 
-        const botHeaders = new Headers()
-        botHeaders.set('Client-Id', process.env.TWITCH_APP_CLIENT_ID!)
-        botHeaders.set('Authorization', `Bearer ${process.env.TWITCH_BOT_OAUTH_TOKEN!.split(':')[1]}`)
-
-        const botRes = await fetch(`https://api.twitch.tv/helix/users?login=${this.getUsername()}`, {
-          method: 'GET',
-          headers: botHeaders,
-        })
-        console.log(this.getUsername())
-        const botData = await botRes.json()
-        const botUserId = botData.data[0].id
-        console.log('BOT DATA', botData)
+        const { userId: botUserId } = await getUserId(this.getUsername())
 
         const channelId = context!['room-id']
         const moderatorId = context!['room-id']
         const userId = context!['user-id']
-        console.log(userId)
-        const duration = 60
-        const reason = 'Cuz I want to LMAO.'
+        const { duration, reason } = response
 
-        const url = `https://api.twitch.tv/helix/moderation/bans?broadcaster_id=${channelId}&moderator_id=${botUserId}`
-        //        console.log('fatyoshiid', botUserId)
-        const headers = new Headers()
-        headers.set('Content-Type', 'application/json')
-        headers.set('Client-Id', process.env.TWITCH_APP_CLIENT_ID!)
-        headers.set('Authorization', `Bearer ${process.env.TWITCH_BOT_OAUTH_TOKEN!.split(':')[1]}`)
-
-        const res = await fetch(url, {
-          method: 'POST',
-          headers,
-          body: JSON.stringify({
-            data: {
-              user_id: context!['user-id'],
-              duration,
-              reason,
-            },
-          }),
-        })
-
-        const data = await res.json()
+        const { data } = await timeoutUser(channelId, botUserId, userId, duration, reason)
 
         console.log(data)
       }
     }
 
-    // If there isn't an active cooldown, convey the response to the channel in a message.
     if (typeof response === 'string') {
       if (!cooldownIsActive) {
         this.say(channel, response)
