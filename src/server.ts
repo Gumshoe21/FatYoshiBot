@@ -13,6 +13,9 @@ await tmiClient.connect()
 tmiClient.on('message', commandHandler)
 tmiClient.on('redeem', rewardHandler)
 tmiClient.on('raided', raidHandler)
+tmiClient.on('timeout', async (channel, username, duration, reason) => {
+  console.log(channel, username, duration, reason)
+})
 
 process.on('uncaughtException', (err) => {
   console.log(err)

@@ -1,4 +1,4 @@
-import tmi from 'tmi.js'
+import tmi, { Client } from 'tmi.js'
 import dotenv from 'dotenv'
 dotenv.config()
 const options: tmi.Options = {
@@ -17,6 +17,6 @@ const options: tmi.Options = {
   */
 }
 
-const tmiClient = new tmi.Client(options)
+const tmiClient: Client = new tmi.Client(options)
 
 export default tmiClient
