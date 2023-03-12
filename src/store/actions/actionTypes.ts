@@ -1,0 +1,1 @@
+export const SET_TRIVIA_ACTIVE = 'SET_TRIVIA_ACTIVE'
