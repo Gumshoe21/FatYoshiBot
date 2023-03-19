@@ -3,7 +3,7 @@ import convertMsToSec from './../../helpers/convertMsToSec.js'
 import getCurrentTimeInMs from './../../helpers/getCurrentTimeInMs.js'
 import { GLOBAL_COOLDOWN_TIME_IN_SECONDS } from './../../constants.js'
 
-export const isOnCooldown = async (username: string, command: string) => {
+export default async function isOnCooldown(username: string, command: string) {
 	console.log(username)
 	// Try to find a cooldown with the provided username and command name in the database. If such a cooldown isn't found, create a new cooldown with the provided username and command name and set the startTime field to the current time in milliseconds.
 	try {

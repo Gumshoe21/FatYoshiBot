@@ -1,7 +1,7 @@
 import tmiClient from './tmiClient.js'
 import { commands } from './commands.js'
 import { rewards } from './rewards.js'
-import { isOnCooldown } from './utils/isOnCooldown.js'
+import isOnCooldown from './utils/isOnCooldown.js'
 import { isCommand } from './../helpers/isCommand.js'
 import { setAsyncInterval } from './../helpers/setAsyncInterval.js'
 import { FAT_YOSHI_TIMER_INTERVAL } from './../constants.js'
@@ -10,9 +10,11 @@ import commandRegexp from './../helpers/commandRegexp.js'
 import dotenv from 'dotenv'
 import fetch, { Headers } from 'node-fetch'
 import { getUserId, timeoutUser } from './../utils/twitchApi.js'
+import { ApiClient } from '@twurple/api'
+
+import { UserIdResolvable } from '@twurple/api'
 
 dotenv.config()
-
 export async function commandHandler(this: Client, channel, context, message, self) {
   try {
     if (!isCommand(message)) return

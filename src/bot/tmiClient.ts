@@ -1,6 +1,10 @@
-import tmi, { Client } from 'tmi.js'
+import * as fs from 'fs'
+import path from 'path'
 import dotenv from 'dotenv'
+import tmi, { Client } from 'tmi.js'
+
 dotenv.config()
+
 const options: tmi.Options = {
   connection: {
     reconnect: true,

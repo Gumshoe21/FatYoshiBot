@@ -45,11 +45,11 @@ export async function timeoutUser(broadcasterId, moderatorId, userId, duration, 
 export async function getFollowAge(channelId, followerId, invokerId) {
   const res = await fetch(`https://api.twitch.tv/helix/users/follows?to_id=${channelId}&from_id=${followerId || invokerId}`, {
     headers: {
-      'Client-ID': process.env.TWITCH_APP_CLIENT_ID,
+      'Client-ID': process.env.TWITCH_APP_CLIENT_ID!,
       Authorization: `Bearer ${process.env.TWITCH_BOT_OAUTH_TOKEN!.split(':')[1]}`,
     },
   })
-
+  console.log(invokerId)
   let data = await res.json()
 
   if (data.data[0]) {
